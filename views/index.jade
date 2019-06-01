@@ -1,0 +1,300 @@
+extends layout
+
+block content
+  div(id='title')
+    //p M
+    //  sup 3
+    p(style="left:15px")  UrbanMotion: Visual Analysis of Metropolitan-Scale Sparse Trajectories
+  div(id='maindiv')
+    //div(id="option")
+      div(:id='"option"+index' class="option" v-for="(item,index) in newOptionData")
+        a
+          {{item.name}}
+        i-select(v-model="item.index"  style="width:100px")
+          i-option(:value="it.value" style="left:0px;top:0px"  v-for="it in item.option" )
+    //div(id='userpanel')
+      fieldset
+        hr
+        div(class="form-group")
+          div(class="input-group date form_datetime col-md-12" data-date="1979-09-16T05:25:07Z" data-date-format="yyyy-MM-dd - HH:ii p" data-link-field="dtp_input1")
+            input(class="form-control" id = "starttime" size="16" type="text" value="2016-July-05" readonly)
+            span(class="input-group-addon")
+              span(class="glyphicon glyphicon-remove")
+            span(class="input-group-addon")
+              span(class="glyphicon glyphicon-th")
+      div(id='hour-selector')
+      span(@click='addMap' class = "glyphicon glyphicon-plus" )
+      i-select(v-model="stay_default" style="width:100px")
+        i-option(:value="item.value"  key="item.value" v-for="item in stay_type" )
+      i-select(v-model="travel_default" style="width:200px" @on-change="changeTravelType(travel_default)")
+        i-option(:value="item.value"  key="item.value" v-for="item in travel_type" )
+    div(:class="mapClass" v-for="(item,index) in mapObj" )
+      div(id="option")
+        //v-if="index!=9 && index!=10 &&index!=11 && index!=7 "
+        div(:id='"option"+index'  class="option" v-for="(item,index) in newOptionData")
+          div(v-if="index!=9 && index!=10 &&index!=11 && index!=7")
+            a {{ item.name }}
+            select(v-model="item.init"    style="width:50px;margin-right:10px;background-color:rgba(0,0,0,0);border:0;color:white" @change='changeOption')
+              //option(:value="it.value" style="left:0px;top:0px"  selected="selected" v-if="it.value==item.init" v-for="it in item.option" )
+              option(:value="it.label" style="left:0px;top:0px;background-color:grey"   v-for="it in item.option" ) {{ it.label }}
+        //div(class="apply-div")
+          i-button(type="primary" size="small" style="background-color:grey;border-color:grey" @click = 'changeOption') Apply
+      div(:id = "'time-link-'+index" class = "time-link")
+        p TIME OF DAY
+        a(@click='changeTI(0)' class="a0") Show All
+        // a(@click='changeTI(1)' class="a1")  Hide All
+        br
+        a(@click='changeTI(2)' class="a2")  Morning
+        span  |
+        a(@click='changeTI(3)' class="a3")  Forenoon
+        br
+        a(@click='changeTI(4)' class="a4" )  Noon
+        span  |
+        a(@click='changeTI(5)' class="a5")  Afternoon
+        span  |
+        a(@click='changeTI(6)' class="a6")  Evening
+        br
+        a(@click='changeTI(7)' class="a7")  Night
+        span  |
+        a(@click='changeTI(8)' class="a8")  Midnight
+       // a(@click='changeTI(9)' class="a9")  Swing Shift
+      div(:id = "'time-selector-'+index" class="time-selector")
+        div(:id = "'animateControl'+index" class = "animate-control")
+          Icon(@click.native = 'changeAnimate' type="ios-pause" v-if="animate=='play'" size="25" style="margin-left:8px;margin-top:3px")
+          Icon(@click.native = 'changeAnimate' type="ios-play" v-else size="25" style="margin-left: 10px;margin-top:3px")
+      div(:id = "'time-option-'+index" class = "time-option")
+        div(class = "time-option-link")
+          p DATE
+          a(@click='changeMonth("Jul")' class="a0") Jul
+          span |
+          a(@click='changeMonth("Aug")' class="a1") Aug
+          span |
+          a(@click='changeMonth("Sep")' class="a2") Sep
+          br
+          a(@click='changeDay("ALL")' class="a3" style="background:#ED5858;color:white") ALL
+          span |
+          a(@click='changeDay("WORKDAY")' class="a4") WORKDAY
+          span |
+          a(@click='changeDay("WEEKEND")' class="a5") WEEKEND
+        //i-select(v-model="year_default" placement='top' style="width:100px;float:left" @on-change = 'changeYear(year_default)')
+            i-option(:value="item.value"  key="item.value" v-for="item in years" )
+        //i-select(v-model="month_default" placement='top' style="width:80px;float:left;margin-top:25px;margin-left:5px;margin-right:5px" @on-change="changeMonth(month_default)")
+            i-option(:value="item.value"  key="item.value" v-for="item in months" )
+        //i-select(v-model="weekday_default" placement='top' style="width:80px;float:left;margin-top:25px;" @on-change="changeDay(weekday_default)")
+            i-option(:value="item.value"  key="item.value" v-for="item in weekdays" )
+        //i-button(type="primary" shape="circle" size="small" @click = 'brush()')
+          span(v-if="!loading") Brush
+          span(v-else) Zoom
+        hr(size=300 width="0.5px" color="#D1D1D1")
+        div(class = "left-bar" )
+          //Icon(@click.native = 'leftTran' type="arrow-left-b" size="20" style="margin-top:25px;margin-left:13px;color:#333333")
+          Icon(@click.native = 'changeAnimateAm' type="ios-pause" v-if="animateAm=='play'" size="25" style="margin-left:13px;margin-top:50px")
+          Icon(@click.native = 'changeAnimateAm' type="ios-play" v-else size="25" style="margin-left: 13px;margin-top:50px")
+        div(class = "timeAxis")
+          //原生事件要加修饰符native
+        div(class = "right-bar")
+          //Icon(@click.native = 'rightTran' type="arrow-right-b" size="20" style="margin-top:25px;color:#333333")
+      div(:id = "'map' +index" class="vamap")
+        div(class = "tooltip" style="opacity:0")
+      div(:id = "'flowOption' +index" class="flow" style="display:none")
+        //formxxxxxxxxxxxxx
+        div(class = "show-icon")
+          Icon(@click.native='showFilter' type="navicon-round" size="20" style="margin-top:5px;margin-left:7px;color:#333333")
+        div(class="filter")
+          dl
+          div(class="directOption")
+            label
+              input(name = "direOption" type ="checkbox" value="DESC" checked="checked" @click='changeSort(index,"DESC")')
+              a(style="color:orange") from
+            label
+              input(name = "direOption" type ="checkbox" value="ASC" @click='changeSort(index,"ASC")')
+              a(style="color:orange") to
+          //label
+              input(name = "flowOption" type ="radio" value="in" checked="checked" @click='changeFilter(index,"dsType")')
+              a(style="color:orange") dsType
+          //label
+              input(name = "flowOption" type ="radio" value="out" @click='changeFilter(index,"msType")')
+              a(style="color:orange") msType
+          //label
+              input(name = "sortOption" type ="radio" value="DESC" checked="checked" @click='changeSort(index,"DESC")')
+              a(style="color:orange") DESC
+          //label
+              input(name = "sortOption" type ="radio" value="ASC" @click='changeSort(index,"ASC")')
+              a(style="color:orange") ASC
+        //span(@click='addMap' class = "glyphicon glyphicon-plus" )
+        //hr
+        //vue-slider(ref="slider" v-model = "item.visulRadius" @drag-end='radiusUpdate(index)')
+        //vue-slider(:max = 1 ref="slider" v-model = "item.proportion" @drag-end='proportionUpdate(index)')
+        //Slider( v-model = "item.proportion" style = "width:215px;margin-top:17px" @on-change='proportionUpdate(index)')
+        //Slider( v-model = "item.particleNum" style = "width:215px;margin-top:17px" @on-change='particleNumUpdate(index)')
+        //vue-slider(:max = 13000 ref="slider" v-model = "item.particleNum" )
+        //vue-slider(:max = 50 ref="slider" v-model = "item.maxParticleLength" )
+        //vue-slider(:max = 50 ref="slider" v-model = "item.directionNum" )
+      //div(:id = "'tool'+index" class = "tool-panel")
+        Icon(@click.native = 'addSelect(index)' type="android-hand" size="35" style="margin-left:10px;margin-top:5px")
+        Icon(@click.native = 'changeStatus' type="ios-pause" v-if="status=='play'" size="35" style="margin-left:25px;margin-top:5px")
+        Icon(@click.native = 'changeStatus' type="ios-play" v-else size="35" style="margin-left:25px;margin-top:5px;")
+      div(:id = "'directionCluster'+index" class = "direction-cluster")
+        div(class = "cluster-panel")
+          div(class = "controlbutton" style="position:absolute;top:45px;left:68px")
+            Icon(@click.native = 'changeStatus' type="ios-pause" v-if="status=='play'" size="30" style="color:white")
+            Icon(@click.native = 'changeStatus' type="ios-play" v-else size="30" style="color:white")
+
+        div(style="position:relative;top:117px")
+          hr(style="color:black:margin-top:10px")
+        div(class="directOption" style="top:-5px;height:105px")
+          //span(style="margin-left:-5px") Flow Visualization
+          //radio-group(v-model="strokeType" style="top:-5px")
+          //  radio(label="speed" style="color:white")
+          //  radio(label="volume" style="color:white")
+          br
+        div(style="position:relative;")
+          //hr(style="color:black:margin-top:10px")
+        div(style="position:relative;top:3px;bottom:2px")
+          span(style="margin-left:5px;float:left") Flow Generation
+          radio-group(v-model="seedUnit.init"  @on-change="changeOption('placeType')" style="margin-left:10px")
+            radio(label="Flow Volume" style="color:white")
+            br
+            //radio(label="Grid" style="color:white")
+            radio(label="Hub" style="color:white")
+            radio(label="Channel" style="color:white")
+            //radio(label="src" style="color:white")
+            //radio(label="dst" style="color:white")
+            //radio(label="sd" style="color:white")
+            //radio(label="tHub" style="color:white")
+        div(class = "seed-slider")
+          span(style="margin-left:5px;line-height:2em") Display Percentage
+          //select(v-model="seedUnit.init"  @change='changeOption'  style="width:55px;margin-top:10px;margin-left:5px")
+            //option(:value="it.value" style="left:0px;top:0px"  selected="selected" v-if="it.value==item.init" v-for="it in item.option" )
+            option(:value="item.value" style="left:0px;top:0px;font-size:4"   v-for="item in seedUnit.option" )
+              {{item.value}}
+          div(class="numslider")
+            Slider(:tip-format="format" v-model ="seedNum"   style = "width:90px;margin-left:15px;margin-top:-13px;float:left"  @on-change='changeOption')
+            span(style="margin-left:10px;margin-top:-2px;position:absolute")  {{seedNum}}%
+          div(class="slider-label" style="top:217px;")
+            span(style="color:white;margin-left:15px") 0
+            span(style="color:white;margin-left:65px") 100
+        div(style="height:35px;float:left;margin-top:10px")
+          span(style="margin-left:5px;line-height:2em") Flow Tracing
+          br
+          radio-group(v-model="treeWidth.init"  @on-change="changeOption('placeType')" style="margin-left:10px")
+            radio(label="One" style="color:white")
+            radio(label="Mid" style="color:white")
+            radio(label="High" style="color:white")
+        div(style="position:relative;top:8px")
+          hr(style="color:black:margin-top:10px")
+        div(style="position:relative;top:57px")
+          hr(style="color:black:margin-top:10px")
+        div(style="position:relative;top:12px")
+          span(style="margin-left:5px;line-height:2em") Population Heatmap
+          radio-group(v-model="heatType" @on-change="changeHeatOption('heatType')" style="margin-left:10px")
+            radio(label="N/A" style="color:white")
+            radio(label="Movement" style="color:white")
+            //radio(label="Travel" style="color:white")
+            radio(label="Record" style="color:white")
+            radio(label="Speed" style="color:white")
+          span(style="margin-left:5px;line-height:1.8em") Display Percentage
+          div(class="numslider")
+            div(class = "contain-slider")
+              Slider(:tip-format="format" v-model ="heatNum" range style = "width:90px;margin-left:15px;margin-top:-13px;float:left"   @on-change="changeHeatOption('heatType')")
+              span(style="margin-left:10px;margin-top:-2px;position:absolute")  {{heatNum[0]}}/{{heatNum[1]}}%
+        div(class="slider-label" style="top:392px")
+            span(style="color:white;margin-left:15px") 0
+            span(style="color:white;margin-left:65px") 100
+        div(style="position:relative;top:40px")
+          hr(style="color:black:margin-top:10px")
+        div(style="position:relative;top:18px")
+          span(style="margin-left:5px;margin-top:6px;float:left") Anomaly Heatmap
+          radio-group(v-model="anomalyType" @on-change="changeHeatOption('anomalyType')" style="margin-left:10px")
+            radio(label="N/A" style="color:white")
+            radio(label="Hourly" style="color:white")
+            radio(label="Daily" style="color:white")
+            radio(label="Weekly" style="color:white")
+            //radio(label="from" style="color:white")
+            //radio(label="to" style="color:white")
+            //radio(label="freq" style="color:white")
+            //radio(label="total" style="color:white")
+          span(style="margin-left:5px;line-height:2em") Display Percentage
+          div(class="numslider")
+            Slider(:tip-format="format" v-model ="anomalyNum"  style = "width:90px;margin-left:15px;margin-top:-13px;float:left"  @on-change="changeHeatOption('anomalyType')")
+            span(style="margin-left:10px;margin-top:-2px;position:absolute")  {{anomalyNum}}%
+        div(class="slider-label" style="top:515px")
+            span(style="color:white;margin-left:15px") 0
+            span(style="color:white;margin-left:65px") 100
+        //div(class='option-button' style="top:500px")
+            i-button(type='primary' style="float:left;margin-top:5px;left:5px" @click = 'showFillingStation') showFillingStation
+            p
+            i-button(type='primary' style="float:left;margin-top:5px;left:5px" @click = 'showSubway') showSubway
+        //span(style="margin-left:5px") Bandwidth
+        //Slider( v-model ="radius"  style = "width:90px;margin-left:15px;margin-top:-13px"  @on-change='changeHeatOption')
+        //Icon(@click.native = 'addSelect(index)' type="crop" size="30" style="margin-left:35px;bottom:15px;color:white")
+
+        //vue-slider(:max="1" ref="slider" v-model = "seedNum" @drag-end='changeOption')
+          //checkbox-group(v-model="fromOrTo")
+            checkbox(label="from")
+            checkbox(label="to")
+          //label
+            input(value="from" name = "direOption" type ="checkbox" checked = "checked" @click='changeOption("from")')
+            a(style="color:white") from
+          //label
+            input(value="to" name = "direOption" type ="checkbox" @click='changeOption("to")')
+            a(style="color:white") to
+        //i-button(type="primary" @click = 'particleNumUpdate(index)') Apply
+        //i-button(type = "primary" @click = 'particleNumUpdate(index,true)') Reply
+        //div(class = "filter-selector")
+          input(type="range" height = "100" v-model = "item.maxWidth" @input = 'changeMaxWidth(item.maxWidth)')
+          div(class="edge-axis")
+          div(class = "slider-label")
+            p Edge
+            //p Radius
+            //p StayNum
+            //p FlowIn
+            //p FlowOut
+
+          div(class = 'slider')
+            Slider(:max="item.maxedgefilter"  v-model = "item.edgefilter" style = "width:215px;margin-top:17px" @on-change='changeFilter(index,item.edgefilter)')
+          div(class="com-axis")
+          div(class = "com-slider-label")
+              p Com
+              //p Radius
+              //p StayNum
+              //p FlowIn
+              //p FlowOut
+
+          div(class = 'com-slider')
+              Slider(:max="item.maxComEdgefilter"  v-model = "item.comEdgefilter" style = "width:215px;margin-top:17px" @on-change='changeFilter(index,item.comEdgefilter)')
+      div(class='test')
+        i-button(type='primary' @click = 'changeToOD' )
+        i-button(type='primary' @click = 'changeToDotsCluster' )
+        i-button(type='primary' @click = 'changeToFamousEnterprise' )
+        i-button(type='primary' @click = 'changeToHotPlaces' )
+        i-button(type='primary' @click = 'changeToHotPlaces("from")' )
+        i-button(type='primary' @click = 'changeToHotPlacesCluster' )
+        br
+        i-button(type='primary' @click = 'changeToHub' )
+        i-button(type='primary' @click = 'changeToChannel' )
+        i-button(type='primary' @click = 'changeToSpeed("low")' )
+        i-button(type='primary' @click = 'changeToSpeed("mid")' )
+        i-button(type='primary' @click = 'changeToSpeed("high")' )
+      div(class='personalRecord')
+        input(type='number' v-model='personalId')
+        i-button(type='primary' @click = 'getPersonalRecord(personalId)') search
+      div(class='chart')
+      div(class='chart2')
+      div(class='subway')
+        img(src="/img/subway.jpg" style="height:28px;width:28px" @click = "showSubway")
+      div(class='gas-station')
+        img(src="/img/gasStation.jpg" style="height:28px;width:28px" @click = "showFillingStation")
+      div(class='bj' @click = 'changeCity("BJ")') BJ
+        //i-button(type='primary' @click = 'changeCity("BJ")' )
+      div(class='tj' @click = 'changeCity("TJ")') TJ
+        //i-button(type='primary' @click = 'changeCity("TJ")' )
+      div(class='ts' @click = 'changeCity("TS")') TS
+        //i-button(type='primary' @click = 'changeCity("TS")' )
+
+//div(class = "tooltip" style="opacity:0")
+          //Slider(v-model = "item.visualRadius" style = "width:80px;margin-top:20px" @on-change='changeFilter(index,item.visualRadius)' disabled=true)
+            //Slider(:max="5000"   v-model = "item.nodeStayFilter"  style = "width:80px;margin-top:17px" @on-change='changeFilter(index,item.nodeStayFilter)' disabled=true)
+            //Slider(v-model = "item.nodeInFilter" style = "width:80px;margin-top:17px" @on-change='changeFilter(index,item.nodeInFilter)' disabled=true)
+            //Slider(v-model = "item.nodeOutFilter" style = "width:80px;margin-top:17px" @on-change='changeFilter(index,item.nodeOutFilter)' disabled=true)
+

@@ -1,0 +1,45 @@
+{
+  "name": "dynamic_city",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "css-loader": "^0.28.7",
+    "d3": "^4.13.0",
+    "d3-geo": "^1.9.0",
+    "debug": "~2.6.9",
+    "echarts": "^3.8.3",
+    "ejs": "^2.5.7",
+    "express": "~4.15.5",
+    "file-loader": "^1.1.5",
+    "heatmap.js": "^2.0.5",
+    "iview": "^2.10.0",
+    "jade": "~1.11.0",
+    "jquery": "^3.2.1",
+    "leaflet": "^1.2.0",
+    "leaflet-draw": "^1.0.2",
+    "leaflet-echarts": "^0.2.1",
+    "morgan": "~1.9.0",
+    "serve-favicon": "~2.4.5",
+    "style-loader": "^0.20.3",
+    "url-loader": "^0.6.2",
+    "vue": "^2.5.15",
+    "vue-slider-component": "^2.5.8",
+    "webpack-dev-middleware": "^2.0.6",
+    "webpack-hot-middleware": "^2.21.0"
+  },
+  "description": "dynamic moving track of people",
+  "main": "app.js",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "webpack": "^3.8.1"
+  },
+  "author": "hcc",
+  "license": "ISC"
+}

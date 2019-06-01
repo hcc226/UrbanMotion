@@ -1,0 +1,291 @@
+{
+  "nodes": [
+    {
+      "y": 39.91343848,
+      "x": 116.40605294,
+      "stay_device_num": 45.25,
+      "id": 0,
+      "stay_record_num": 90.5
+    },
+    {
+      "y": 39.90948836,
+      "x": 116.35506951,
+      "stay_device_num": 64.9,
+      "id": 1,
+      "stay_record_num": 129.8
+    },
+    {
+      "y": 39.83813014,
+      "x": 116.27820346,
+      "stay_device_num": 116.2,
+      "id": 2,
+      "stay_record_num": 232.4
+    },
+    {
+      "y": 40.02238725,
+      "x": 116.21351884,
+      "stay_device_num": 184.7,
+      "id": 3,
+      "stay_record_num": 369.4
+    },
+    {
+      "y": 39.93741311,
+      "x": 116.15412401,
+      "stay_device_num": 32.6,
+      "id": 4,
+      "stay_record_num": 65.2
+    },
+    {
+      "y": 40.01511796,
+      "x": 115.77723211,
+      "stay_device_num": 15.4,
+      "id": 5,
+      "stay_record_num": 30.8
+    },
+    {
+      "y": 40.14856187,
+      "x": 116.69321721,
+      "stay_device_num": 51.0,
+      "id": 6,
+      "stay_record_num": 102.0
+    },
+    {
+      "y": 39.80233007,
+      "x": 116.6794843,
+      "stay_device_num": 68.9,
+      "id": 7,
+      "stay_record_num": 137.8
+    },
+    {
+      "y": 39.95297352,
+      "x": 116.49175021,
+      "stay_device_num": 197.75,
+      "id": 8,
+      "stay_record_num": 395.5
+    },
+    {
+      "y": 39.65340841,
+      "x": 116.36225408,
+      "stay_device_num": 78.1,
+      "id": 9,
+      "stay_record_num": 156.2
+    },
+    {
+      "y": 40.22619595,
+      "x": 116.20432561,
+      "stay_device_num": 98.15,
+      "id": 10,
+      "stay_record_num": 196.3
+    },
+    {
+      "y": 40.20207596,
+      "x": 117.08872503,
+      "stay_device_num": 21.15,
+      "id": 11,
+      "stay_record_num": 42.3
+    },
+    {
+      "y": 40.3843357,
+      "x": 116.51331609,
+      "stay_device_num": 19.2,
+      "id": 12,
+      "stay_record_num": 38.4
+    },
+    {
+      "y": 40.465325,
+      "x": 115.985006,
+      "stay_device_num": 15.7,
+      "id": 13,
+      "stay_record_num": 31.4
+    },
+    {
+      "y": 39.735535,
+      "x": 116.139157,
+      "stay_device_num": 52.3,
+      "id": 14,
+      "stay_record_num": 104.6
+    },
+    {
+      "y": 40.377362,
+      "x": 116.843352,
+      "stay_device_num": 23,
+      "id": 15,
+      "stay_record_num": 47
+    }
+  ],
+  "edges": [
+    {
+      "travel_record_num": 20,
+      "travel_device_num": 12,
+      "from_nid": 10,
+      "eid": 0,
+      "to_nid": 3
+    },
+    {
+      "travel_record_num": 9,
+      "travel_device_num": 7,
+      "from_nid": 10,
+      "eid": 1,
+      "to_nid": 8
+    },
+    {
+      "travel_record_num": 6,
+      "travel_device_num": 6,
+      "from_nid": 6,
+      "eid": 2,
+      "to_nid": 8
+    },
+    {
+      "travel_record_num": 11,
+      "travel_device_num": 6,
+      "from_nid": 14,
+      "eid": 3,
+      "to_nid": 0
+    },
+    {
+      "travel_record_num": 24,
+      "travel_device_num": 22,
+      "from_nid": 10,
+      "eid": 4,
+      "to_nid": 0
+    },
+    {
+      "travel_record_num": 4,
+      "travel_device_num": 4,
+      "from_nid": 10,
+      "eid": 5,
+      "to_nid": 7
+    },
+    {
+      "travel_record_num": 30,
+      "travel_device_num": 26,
+      "from_nid": 1,
+      "eid": 6,
+      "to_nid": 0
+    },
+    {
+      "travel_record_num": 19,
+      "travel_device_num": 16,
+      "from_nid": 2,
+      "eid": 7,
+      "to_nid": 0
+    },
+    {
+      "travel_record_num": 5,
+      "travel_device_num": 3,
+      "from_nid": 9,
+      "eid": 8,
+      "to_nid": 0
+    },
+    {
+      "travel_record_num": 3,
+      "travel_device_num": 3,
+      "from_nid": 12,
+      "eid": 9,
+      "to_nid": 0
+    },
+    {
+      "travel_record_num": 3,
+      "travel_device_num": 4,
+      "from_nid": 5,
+      "eid": 10,
+      "to_nid": 1
+    },
+    {
+      "travel_record_num": 8,
+      "travel_device_num": 5,
+      "from_nid": 15,
+      "eid": 11,
+      "to_nid": 1
+    },
+    {
+      "travel_record_num": 2,
+      "travel_device_num": 1,
+      "from_nid": 13,
+      "eid": 12,
+      "to_nid": 1
+    },
+    {
+      "travel_record_num": 39,
+      "travel_device_num": 33,
+      "from_nid": 4,
+      "eid": 13,
+      "to_nid": 1
+    },
+    {
+      "travel_record_num": 2,
+      "travel_device_num": 1,
+      "from_nid": 11,
+      "eid": 14,
+      "to_nid": 3
+    },
+    {
+      "travel_record_num": 9,
+      "travel_device_num": 4,
+      "from_nid": 4,
+      "eid": 15,
+      "to_nid": 3
+    },
+    {
+      "travel_record_num": 3,
+      "travel_device_num": 3,
+      "from_nid": 9,
+      "eid": 16,
+      "to_nid": 3
+    },
+    {
+      "travel_record_num": 2,
+      "travel_device_num": 1,
+      "from_nid": 2,
+      "eid": 17,
+      "to_nid": 3
+    },
+    {
+      "travel_record_num": 2,
+      "travel_device_num": 1,
+      "from_nid": 2,
+      "eid": 18,
+      "to_nid": 8
+    },
+    {
+      "travel_record_num": 9,
+      "travel_device_num": 6,
+      "from_nid": 9,
+      "eid": 19,
+      "to_nid": 8
+    },
+    {
+      "travel_record_num": 5,
+      "travel_device_num": 1,
+      "from_nid": 14,
+      "eid": 20,
+      "to_nid": 8
+    },
+    {
+      "travel_record_num": 4,
+      "travel_device_num": 5,
+      "from_nid": 14,
+      "eid": 21,
+      "to_nid": 11
+    },
+    {
+      "travel_record_num": 2,
+      "travel_device_num": 1,
+      "from_nid": 6,
+      "eid": 22,
+      "to_nid": 11
+    },
+    {
+      "travel_record_num": 3,
+      "travel_device_num": 2,
+      "from_nid": 12,
+      "eid": 23,
+      "to_nid": 13
+    }
+  ],
+  "props": {
+    "day": 1,
+    "hour": 4,
+    "period": 1
+  }
+}

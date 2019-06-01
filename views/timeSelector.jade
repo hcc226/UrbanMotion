@@ -1,0 +1,14 @@
+extends index
+
+block timeSelector
+    div(class = 'TimeLink')
+        h6 TIME OF DAY
+        a(@click='changeTI(1)') Show All
+        a(@click='changeTI(0)') Hide All
+        a(@click='changeTI(2)') Light
+        a(@click='changeTI(3)') Dark
+        a(@click='changeTI(4)') Commute
+        a(@click='changeTI(5)') Nightlife
+        a(@click='changeTI(3)') Day
+        a(@click='changeTI(4)') Night
+        a(@click='changeTI(5)') Swing Shift

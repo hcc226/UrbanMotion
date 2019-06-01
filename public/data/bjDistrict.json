@@ -1,0 +1,18 @@
+﻿[
+  {"name":"东城区","english":"DONGCHENG","cp":[116.40605294,39.91343848],"childNum":1,"population":90.5},
+  {"name":"西城区","english":"XICHENG","cp":[116.35506951,39.90948836],"childNum":1,"population":129.80},
+  {"name":"丰台区","english":"FENGTAI","cp":[116.27820346,39.83813014],"childNum":1,"population":232.4},
+  {"name":"海淀区","english":"HAIDIAN","cp":[116.21351884,40.02238725],"childNum":1,"population":369.4},
+  {"name":"石景山区","english":"SHIJINGSHAN","cp":[116.15412401,39.93741311],"childNum":1,"population":65.2},
+  {"name":"门头沟区","english":"MENTOUGOU","cp":[115.77723211,40.01511796],"childNum":1,"population":30.8},
+  {"name":"顺义区","english":"SHUNYI","cp":[116.69321721,40.14856187],"childNum":2,"population":102.0},
+  {"name":"通州区","english":"TONGZHOU","cp":[116.67948430,39.80233007],"childNum":1,"population":137.8},
+  {"name":"朝阳区","english":"CHAOYANG","cp":[116.49175021,39.95297352],"childNum":2,"population":395.5},
+  {"name":"大兴区","english":"DAXING","cp":[116.36225408,39.65340841],"childNum":1,"population":156.2},
+  {"name":"昌平区","english":"CHANGPING","cp":[116.20432561,40.22619595],"childNum":1,"population":196.3},
+  {"name":"平谷区","english":"PINGGU","cp":[117.08872503,40.20207596],"childNum":1,"population":42.3},
+  {"name":"怀柔区","english":"HUAIROU","cp":[116.51331609,40.38433570],"childNum":1,"population":38.4},
+  {"name":"延庆区","english":"YANQING","cp":[115.985006,40.465325],"childNum":1,"population":31.4},
+  {"name":"房山区","english":"FANGSHAN","cp":[116.139157,39.735535],"childNum":1,"population":104.6},
+  {"name":"密云区","english":"MIYUN","cp":[116.843352,40.377362],"childNum":1,"population":47}
+]
