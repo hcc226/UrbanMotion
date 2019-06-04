@@ -1,1 +1,131 @@
-# dynamicCity
+# UrbanMotion 文档
+
+## 安装
+```
+git clone url
+npm install
+npm run start
+```
+## 简介
+主要使用vue\iview\jade\leaflet\canvas\heatmap.js等技术
+
+## 项目结构
+
+```
+UrbanMotion/
+│  app.js
+│  npm-debug.log
+│  package-lock.json
+│  package.json
+│  README.md
+│  webpack.config.js
+│  
+├─bin
+│      www         
+├─public
+│  ├─data
+│  ├─javascripts
+│  └─stylesheets          
+├─src
+│  │  init.js
+│  │  prop.js
+│  │  
+│  ├─Animator
+│  │      animator.js
+│  │      animatorCtrl.js
+│  │      
+│  ├─calculate
+│  │      calculateCircle.js
+│  │      calculateColor.js
+│  │      calculateEdge.js
+│  │      
+│  ├─directionCluster
+│  │      directionFunction.js
+│  │      drawDirectionCluster.js
+│  │      
+│  ├─drawAxis
+│  │      drawAxis.js
+│  │      
+│  ├─drawClock
+│  │      drawClock.js
+│  │      
+│  ├─drawMap
+│  │      map.js
+│  │      mapLayout.js
+│  │      process.js
+│  │      SDCurve.js
+│  │      simplify.js
+│  │      tempreral.html
+│  │      testGenerateTree.js
+│  │      
+│  ├─init
+│  │      mapVueInit.js
+│  │      
+│  ├─processData
+│  │      getData.js
+│  │      processData.js
+│  │      
+│  ├─processTree
+│  │      processTree.js
+│  │      
+│  ├─request
+│  │      request.js
+│  │      
+│  ├─Selecor
+│  │      selectorLayout.js
+│  │      
+│  ├─services
+│  │      ajax.js
+│  │      dotsCluster.js
+│  │      famousEnterprise.js
+│  │      gidFlowStatics.js
+│  │      ODMap.js
+│  │      personalRecords.js
+│  │      
+│  ├─util
+│  │      base.js
+│          
+└─views
+        error.jade
+        index.jade
+        layout.jade
+        timeSelector.jade
+```
+
+## src/重要文件详细说明
+
+### 1. init.js
+用途：入口文件，初始化vue实例对象，包含绑定数据、组件、methods、computed、mounted等生命周期
+
+### 2. /init/mapVueInit.js
+用途：vue绑定的初始化数据，包括各个下拉菜单、单选按钮的初始值等
+
+### 3. ../views文件夹
+用途：界面构建，以jade方式，主要使用了ivew的一些组件，并在组件中绑定了一些事件
+
+### 4. /drawMap/mapLayout.js
+用途: 定义mapview类，主要完成地图的展示功能，包括底图的设定、缩放等事件的监听、热力图以及动态移动流的绘制。
+
+### 5. /processTree/processTree.js
+用途：定义了动画绘制过程中平滑的方法，包括单个移动流的平滑、树的平滑。
+
+### 6. /calculate文件夹
+用途：包含项目中所用到的各个计算方法，详见各文件
+
+### 7. /drawAxis/drawAxis.js
+用途：绘制UrbanMotion系统中的时间轴选择部分
+
+### 8. /drawClock/drawClock.js
+用途：绘制系统中的时钟部分，并添加点击监听事件
+
+### 9 /services文件夹
+用途：包含用于和后端接口请求的方法，由于存在跨域的问题，本项目采用jsonp的方式来解决，在/request/request.js文件中同样存在一些请求方法。
+
+### 10 /util/base
+用途：包含各类地图坐标系转换函数，这是因为各个底图所采用的坐标系不同，因此需要进行转换；以及请求数据后出现的动画logo添加函数。
+
+### 修改说明
+界面修改：../views文件夹
+绑定事件：init.js添加新的methods
+请求数据：在/services下面添加新的文件
+地图绘制：drawMap/mapLayout.js中添加新的类方法
