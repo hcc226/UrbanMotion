@@ -129,7 +129,7 @@ UrbanMotion/
 ### 11 /Animator文件夹
 用途：设置动画绘制过程中的一些参数，例如：蒙层的透明度、线条的颜色粗细等
 
-### 12 /directionCluster
+### 12 /directionCluster文件夹
 用途：生成右上角的方向聚类时钟，并添加点击监听事件
 
 ### 修改说明
