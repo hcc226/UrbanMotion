@@ -79,10 +79,6 @@ UrbanMotion/
 │  │      base.js
 │          
 └─views
-        error.jade
-        index.jade
-        layout.jade
-        timeSelector.jade
 ```
 
 ## src/重要文件详细说明
