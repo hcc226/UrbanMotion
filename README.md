@@ -53,10 +53,6 @@ UrbanMotion/
 │  │      map.js
 │  │      mapLayout.js
 │  │      process.js
-│  │      SDCurve.js
-│  │      simplify.js
-│  │      tempreral.html
-│  │      testGenerateTree.js
 │  │      
 │  ├─init
 │  │      mapVueInit.js
@@ -70,9 +66,6 @@ UrbanMotion/
 │  │      
 │  ├─request
 │  │      request.js
-│  │      
-│  ├─Selecor
-│  │      selectorLayout.js
 │  │      
 │  ├─services
 │  │      ajax.js
@@ -125,7 +118,7 @@ UrbanMotion/
 用途：绘制UrbanMotion系统中的时间轴选择部分
 
 ### 8. /drawClock/drawClock.js
-用途：绘制系统中的时钟部分，并添加点击监听事件
+用途：绘制系统中的左下角时钟部分，并添加点击监听事件
 
 ### 9 /services文件夹
 用途：包含用于和后端接口请求的方法，由于存在跨域的问题，本项目采用jsonp的方式来解决，在/request/request.js文件中同样存在一些请求方法。
@@ -136,8 +129,12 @@ UrbanMotion/
 ### 11 /Animator文件夹
 用途：设置动画绘制过程中的一些参数，例如：蒙层的透明度、线条的颜色粗细等
 
+### 12 /directionCluster
+用途：生成右上角的方向聚类时钟，并添加点击监听事件
+
 ### 修改说明
 界面修改：../views文件夹
+绑定数据添加/修改：/init/mapVueInit.js中进行添加/修改
 绑定事件：init.js添加新的methods
 请求数据：在/services下面添加新的文件
 地图绘制：drawMap/mapLayout.js中添加新的类方法
