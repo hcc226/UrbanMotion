@@ -105,6 +105,14 @@ UrbanMotion/
 
 ### 4. /drawMap/mapLayout.js
 用途: 定义mapview类，主要完成地图的展示功能，包括底图的设定、缩放等事件的监听、热力图以及动态移动流的绘制。
+下面介绍几个重要方法：
+#### generate方法由服务端返回的树生成由多条由点组成的轨迹。
+#### drawLoopTree方法动态绘制移动流，采用canvas方法完成绘制和动画过程，其中包括地图viewreset、zoomstart、zoomend、moveend等事件的监听。其中动画的完成请参考canvas动画教程。
+#### drawStayPath方法绘制静止的移动流
+#### addHeatMap方法绘制热力图
+参数：type 代表热力图的类型，data是热力图绑定的数据
+#### drawStaticsChart方法绘制异常统计图
+#### drawHubFlag方法绘制Hub的logo，并且绑定Hub点击事件
 
 ### 5. /processTree/processTree.js
 用途：定义了动画绘制过程中平滑的方法，包括单个移动流的平滑、树的平滑。
