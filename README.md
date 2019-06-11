@@ -133,8 +133,10 @@ UrbanMotion/
 用途：生成右上角的方向聚类时钟，并添加点击监听事件
 
 ### 修改说明
-界面修改：../views文件夹
-绑定数据添加/修改：/init/mapVueInit.js中进行添加/修改
-绑定事件：init.js添加新的methods
-请求数据：在/services下面添加新的文件
-地图绘制：drawMap/mapLayout.js中添加新的类方法
+```
+# 界面修改：../views文件夹
+# 绑定数据添加/修改：/init/mapVueInit.js中进行添加/修改
+# 绑定事件：init.js添加新的methods
+# 请求数据：在/services下面添加新的文件
+# 地图绘制：drawMap/mapLayout.js中添加新的类方法
+```
